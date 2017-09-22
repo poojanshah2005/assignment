@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         int length = list[0];
         for(int i = 1; i < 12 ;i++){
             int[] newList =  new int[16];
-            newList = Arrays.copyOfRange(list,((i*16)-16)+1,(i*16)+1);
+            newList = Arrays.copyOfRange(list,((i*16)-15)+1,(i*16)+2);
             output[i] = newList;
 
         }
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initializeRecyclerView();
+
         int[] list = {12, 0, 1, 0, 0, 0, 40, 61, -67, 89, 72, 0, 0, 0, 0, 96, 0, 0, 2, 0,
                 0, 0, -14, 61, -62, 89, 72, 0, 0, 0, 0, 96, 0, 0, 3, 0, 0, 0, -57, 65, 194, 89, 72, 0, 0,
                 0, 0, 96, 0, 0, 4, 0, 0, 0, 80, 66, -62, 89, 72, 0, 0, 0, 0, 96, 0, 0, 5, 0, 0, 0, -29,
@@ -45,19 +45,20 @@ public class MainActivity extends AppCompatActivity {
         for(int[] line: output){
 //            Log.i("lne", String.valueOf(line));
             for(int i: line){
-                Log.i("Line", String.valueOf(i));
+//                Log.i("Line", String.valueOf(i));
             }
-            Log.i("NewLine","NewLine");
+//            Log.i("NewLine","NewLine");
         }
+        initializeRecyclerView(output);
     }
 
-    public void initializeRecyclerView(){
+    public void initializeRecyclerView(int[][] input){
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
         /**
          * Two important things required: layout, adapter
          */
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        mRecyclerView.setAdapter(new JokesAdapter(null));
+        mRecyclerView.setAdapter(new JokesAdapter(input));
     }
 }

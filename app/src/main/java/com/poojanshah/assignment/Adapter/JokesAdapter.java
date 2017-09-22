@@ -1,6 +1,7 @@
 package com.poojanshah.assignment.Adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,16 +10,17 @@ import android.widget.TextView;
 import com.poojanshah.assignment.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Poojan on 22/09/2017.
  */
 
 public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.MyViewHolder> {
-    ArrayList<String> jokes = new ArrayList<>();
+    int[][] list;
 
-    public JokesAdapter(ArrayList<String> jokes) {
-        this.jokes = jokes;
+    public JokesAdapter(int[][] list) {
+        this.list = list;
     }
 
     @Override
@@ -30,16 +32,29 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 //        holder.tvJoke.setText(jokes.get(position).getMessage());
-        holder.tvSessionID.setText("");
-        holder.tvSessionAvitity.setText("");
-        holder.tvStartTime.setText("");
-        holder.tvDuration.setText("");
-        holder.tvMemory.setText("");
+        String a = Arrays.toString(list[position]);
+        Log.i("value",a);
+        int[] id = Arrays.copyOfRange(list[position],0,2);
+        int[] activity = Arrays.copyOfRange(list[position],2,4);
+        int[] startTime = Arrays.copyOfRange(list[position],4,8);
+        int[] duration = Arrays.copyOfRange(list[position],8,12);
+        int[] memory = Arrays.copyOfRange(list[position],12,16);
+
+        Log.i("id",Arrays.toString(id));
+        Log.i("activity",Arrays.toString(activity));
+        Log.i("startTime",Arrays.toString(startTime));
+        Log.i("duration",Arrays.toString(duration));
+        Log.i("memory",Arrays.toString(memory));
+        holder.tvSessionID.setText("SessionID: " + Arrays.toString(id));
+        holder.tvSessionAvitity.setText("Session Avitity: " + Arrays.toString(activity));
+        holder.tvStartTime.setText("Start Time:" + Arrays.toString(startTime));
+        holder.tvDuration.setText("Duration:" + Arrays.toString(duration));
+        holder.tvMemory.setText("Memory: " + Arrays.toString(memory));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.length;
     }
 
 
