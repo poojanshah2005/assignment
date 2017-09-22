@@ -45,11 +45,20 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.MyViewHolder
         Log.i("startTime",Arrays.toString(startTime));
         Log.i("duration",Arrays.toString(duration));
         Log.i("memory",Arrays.toString(memory));
-        holder.tvSessionID.setText("SessionID: " + Arrays.toString(id));
-        holder.tvSessionAvitity.setText("Session Avitity: " + Arrays.toString(activity));
-        holder.tvStartTime.setText("Start Time:" + Arrays.toString(startTime));
-        holder.tvDuration.setText("Duration:" + Arrays.toString(duration));
-        holder.tvMemory.setText("Memory: " + Arrays.toString(memory));
+        holder.tvSessionID.setText("SessionID: " + covertToString(id));
+        holder.tvSessionAvitity.setText("Session Avitity: " + covertToString(activity));
+        holder.tvStartTime.setText("Start Time:" + covertToString(startTime));
+        holder.tvDuration.setText("Duration:" + covertToString(duration));
+        holder.tvMemory.setText("Memory: " + covertToString(memory));
+    }
+
+    private String covertToString(int[] input){
+        int[] output = new int[input.length];
+        int pointer = 0;
+        for(int i: input){
+            output[pointer++] = i & 0xff;
+        }
+        return Arrays.toString(output);
     }
 
     @Override
