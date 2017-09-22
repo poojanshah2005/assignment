@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 1; i < 12 ;i++){
             int[] newList =  new int[16];
             newList = Arrays.copyOfRange(list,((i*16)-15)+1,(i*16)+2);
-            output[i] = newList;
+            output[i-1] = newList;
 
         }
 
