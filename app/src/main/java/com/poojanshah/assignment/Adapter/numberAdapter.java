@@ -9,17 +9,16 @@ import android.widget.TextView;
 
 import com.poojanshah.assignment.R;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
  * Created by Poojan on 22/09/2017.
  */
 
-public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.MyViewHolder> {
-    int[][] list;
+public class numberAdapter extends RecyclerView.Adapter<numberAdapter.MyViewHolder> {
+    byte[][] list;
 
-    public JokesAdapter(int[][] list) {
+    public numberAdapter(byte[][] list) {
         this.list = list;
     }
 
@@ -34,11 +33,11 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.MyViewHolder
 //        holder.tvJoke.setText(jokes.get(position).getMessage());
         String a = Arrays.toString(list[position]);
         Log.i("value",a);
-        int[] id = Arrays.copyOfRange(list[position],0,2);
-        int[] activity = Arrays.copyOfRange(list[position],2,4);
-        int[] startTime = Arrays.copyOfRange(list[position],4,8);
-        int[] duration = Arrays.copyOfRange(list[position],8,12);
-        int[] memory = Arrays.copyOfRange(list[position],12,16);
+        byte[] id = Arrays.copyOfRange(list[position],0,2);
+        byte[] activity = Arrays.copyOfRange(list[position],2,4);
+        byte[] startTime = Arrays.copyOfRange(list[position],4,8);
+        byte[] duration = Arrays.copyOfRange(list[position],8,12);
+        byte[] memory = Arrays.copyOfRange(list[position],12,16);
 
         Log.i("id",Arrays.toString(id));
         Log.i("activity",Arrays.toString(activity));
@@ -52,7 +51,7 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.MyViewHolder
         holder.tvMemory.setText("Memory: " + covertToString(memory));
     }
 
-    private String covertToString(int[] input){
+    private String covertToString(byte[] input){
         int[] output = new int[input.length];
         int pointer = 0;
         for(int i: input){
