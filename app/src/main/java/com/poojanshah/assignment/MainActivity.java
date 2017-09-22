@@ -16,8 +16,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     public int[][] processList(int[] list){
-        int[][] output = new int[14][16];
         int length = list[0];
+        int[][] output = new int[length][16];
+
         for(int i = 1; i < length+1 ;i++){
             int[] newList =  new int[16];
             newList = Arrays.copyOfRange(list,((i*16)-15)+1,(i*16)+2);
