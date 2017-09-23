@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import com.poojanshah.assignment.R;
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.nio.BufferUnderflowException;
 import java.util.Arrays;
 
 /**
@@ -52,13 +56,48 @@ public class numberAdapter extends RecyclerView.Adapter<numberAdapter.MyViewHold
     }
 
     private String covertToString(byte[] input){
-        int[] output = new int[input.length];
-        int pointer = 0;
-        for(int i: input){
-            output[pointer++] = i & 0xff;
+        long output = 0;
+        try {
+            for(byte b: input){
+                output += b & 0xff;
+            }
+            return String.valueOf(toLong_STR(input));
+        }   catch(BufferUnderflowException e){
+                return "";
+            } catch(NumberFormatException e){
+            return "";
         }
-        return Arrays.toString(output);
     }
+
+    public static long bytesToLong(byte[] bytes) {
+        if (bytes.length > 8) {
+//            throw new IllegalMethodParameterException("byte should not be more than 8 bytes");
+
+        }
+        long r = 0;
+        for (int i = 0; i < bytes.length; i++) {
+            r = r << 8;
+            r += bytes[i];
+        }
+
+        return r;
+    }
+
+    static long toLong_STR(byte[] b)
+    {
+        long value = 0;
+        for (int i = 0; i < b.length; i++)
+        {
+            value += ((long) b[i] & 0xffL) << (8 * i);
+        }
+        return value;
+    }
+
+
+
+
+
+
 
     @Override
     public int getItemCount() {
